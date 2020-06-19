@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
-import './App.css';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, ThemeProvider } from 'styled-components';
+import { Button } from './components/Button';
+import { theme_one, theme_two } from './theme/themes';
+import ThemeSelect from './components/ThemeSelect';
 
 const  AppWrapper = styled.div`
  text-align:center;
@@ -24,7 +26,7 @@ const AppLogo = styled.img`
 `
 
 const AppHeader = styled.div`
-  background-color: pink;
+  background-color: ${props=> props.theme.primary};
   height: 150px;
   padding: 20px;
   color: white;
@@ -37,21 +39,45 @@ const AppIntro = styled.p`
 `
 
 function App() {
+  const [theme,setTheme]= useState(theme_one)
+
+  const handleThemeChange = (e)=>{
+    let theme = e.target.value
+    //theme = 'theme_one'
+
+    theme === 'theme_one' ? (theme = theme_one) :(theme = theme_two)
+
+    //theme = {primary:'red',secondary}
+    setTheme(theme)
+  }
+
   return (
+    <ThemeProvider theme={theme}>
     <AppWrapper>
 
-      <AppHeader>
-        <AppLogo src={logo}  alt="logo" />
-        <AppTitle>
-          Hello Ironhacker
-        </AppTitle>
-      </AppHeader>
+        <AppHeader>
+          <AppLogo src={logo}  alt="logo" />
+          <AppTitle>
+            Hello Ironhacker
+          </AppTitle>
+        </AppHeader>
 
-      <AppIntro>
-        Esto es con styled component
-      </AppIntro>
+        <AppIntro>
+          Esto es con styled component
+        </AppIntro>
+          {/* por defecto  */}
+          <Button onClick={()=>alert('Hola')}>Press me!!</Button>
+          {/* primary */}
+          <Button primary>Press me primary!!</Button>
+          {/* scondary */}
+          <Button secondary>Press me secondary!!</Button>
+          {/* danger */}
+          <Button danger>Press me danger!!</Button>
+          {/* selector de tema */}
+          <ThemeSelect handleThemeChange={handleThemeChange}/>
+        </AppWrapper>
+    </ThemeProvider>
 
-    </AppWrapper>
   );
 }
 
