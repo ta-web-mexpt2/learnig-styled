@@ -4,6 +4,7 @@ import styled, { keyframes, ThemeProvider } from 'styled-components';
 import { Button } from './components/Button';
 import { theme_one, theme_two } from './theme/themes';
 import ThemeSelect from './components/ThemeSelect';
+import UikitC from './components/UikitC';
 
 const  AppWrapper = styled.div`
  text-align:center;
@@ -76,6 +77,8 @@ function App() {
           {/* selector de tema */}
           <ThemeSelect handleThemeChange={handleThemeChange}/>
         </AppWrapper>
+
+        <UikitC/>
     </ThemeProvider>
 
   );
