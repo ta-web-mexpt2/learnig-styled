@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  width: 100px;
 }
 
 .App-logo {
@@ -24,6 +24,8 @@
   color: white;
 }
 
+
+
 .App-link {
   color: #61dafb;
 }
@@ -35,4 +37,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+div:hover{
+  /* lo que hace  */
 }
